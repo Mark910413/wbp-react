@@ -8,10 +8,12 @@ const Home = Loadable({
     loader: () => import( /*webpackChunkName: 'home'*/'@page/home/Index'),
     loading () { return <div>Loading...</div> },
 });
-const Personal = Loadable({
-    loader: () => import('@page/personal/Index'),
-    loading () { return <div>Loading...</div> },
-});
+// const Personal = Loadable({
+//     loader: () => import('@page/personal/Index'),
+//     loading () { return <div>Loading...</div> },
+// });
+
+import Personal from '@page/personal/Index'
 
 class Widget extends React.Component{
     render() {

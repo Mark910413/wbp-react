@@ -7,3 +7,4 @@ const render = () => reactDom.render(<Router />, document.getElementById('root')
 render();
 
 Store.subscribe(render);
+
