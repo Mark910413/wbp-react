@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-22 16:49:14
- * @LastEditTime: 2021-01-27 14:41:22
+ * @LastEditTime: 2021-01-28 17:13:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \wpk-react\src\store\reducer\index.js
@@ -15,6 +15,8 @@ import {
   SET_VISIBILITY_FILTER,
   INCREASE,
   DECREASE,
+  RECIVEDATA,
+  STARTGETDATA,
 } from '../action/index.js'
 
 const initialState = {
@@ -80,38 +82,21 @@ function counter(state = 0, action) {
       return state;    
   }
 }
-// function todoApp(state = initialState, action) {
-//   switch (action.type) {
-//     case SET_VISIBILITY_FILTER:
-//       return Object.assign({}, state, {
-//         visibilityFilter: visibilityFilter(state.visibilityFilter, action)
-//       });
-//     case ADD_TODO:
-//       return Object.assign({}, state, {
-//         todos: todo(state.todos, action)
-//       });
-//     case TOGGLE_TODO:
-//       return Object.assign({}, state, {
-//         todos: todo(state.todos, action)
-//       });
-//     default:
-//       return state;
-//   }
-// }
-
-// 拆分后 todoApp 的代码就很简洁了
-// function todoApp(state = initialState, action) {
-//   return {
-//     visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-//     todos: todo(state.todos, action)
-//   }
-// }
-
+// 获取服务端的数据
+function serviceData(state='Await data from Sevice...', action) {
+  if (action.type === RECIVEDATA) {
+    return  action.data;
+  } else if (action.type === STARTGETDATA) {
+    return action.data;
+  }
+  return state;
+}
 // redux 提供了  combineReducers 这个函数就是上面的简写（？）
 const todoApp = combineReducers({
   visibilityFilter,
   todo,
-  counter
+  counter,
+  serviceData
 });
 
 export default todoApp;

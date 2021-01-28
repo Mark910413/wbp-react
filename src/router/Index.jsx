@@ -4,14 +4,21 @@ import Loadable from 'react-loadable';
 import { Provider } from 'react-redux'
 import store from '@store/index';
 
+
+const loading = () => <div>loading</div>;
 const Home = Loadable({
     loader: () => import( /*webpackChunkName: 'home'*/'@page/home/Index'),
-    loading () { return <div>Loading...</div> },
+    loading,
 });
 const Personal = Loadable({
     loader: () => import('@page/personal/Index'),
-    loading () { return <div>Loading...</div> },
+    loading,
 });
+
+const Effects = Loadable({
+    loader: () => import('@page/effects/Index'),
+    loading,
+})
 
 class Widget extends React.Component{
     render() {
@@ -20,10 +27,12 @@ class Widget extends React.Component{
                 <Router>
                     <Link to="/home">home page</Link>
                     <Link to="/personal"> personal page</Link>
+                    <Link to="/effect"> effects page</Link>
                     <Switch>
                         <Redirect from="/" to="/home" exact/>
                         <Route path="/home" component={Home} exact />
                         <Route path="/personal" component={Personal} exact /> 
+                        <Route path="/effect" component={Effects} exact /> 
                     </Switch>
                 </Router>
             </Provider>

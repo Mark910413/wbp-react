@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-01-20 17:27:22
+ * @LastEditTime: 2021-01-28 16:16:45
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \wpk-react\webpack.config.js
+ */
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
@@ -22,6 +30,7 @@ module.exports = {
  resolve: {
    extensions: [".js", ".jsx"],
    alias: {
+     '@src': path.resolve(__dirname, './src'),
      '@page': path.resolve(__dirname, './src/page'),
      '@store': path.resolve(__dirname, './src/store'),
    }
