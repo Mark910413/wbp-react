@@ -1,5 +1,5 @@
 import React from 'react';
-import Store from '@store/index';
+import { connect } from 'react-redux'
 import { increaseCounter, decreaseCounter } from '@store/action/index.js'
 import './style.less';
 
@@ -12,16 +12,19 @@ class Widget extends React.Component {
   componentWillUnmount() {
   }
   render() {
+    const { dispatch, counter } = this.props;
     return (
       <div className="img-list">
-        <span>{Store.getState().counter}</span>
+        <span>{counter}</span>
         <div>
-          <button onClick={() => Store.dispatch(increaseCounter())}>INCREMENT</button>
-          <button onClick={() => Store.dispatch(decreaseCounter())}>DECREMTNT</button>
+          <button onClick={() => dispatch(decreaseCounter()) }>INCREMENT</button>
+          <button onClick={() => dispatch(increaseCounter()) }>DECREMTNT</button>
         </div>
       </div>
     );
   }
 }
 
-export default Widget;
+export default connect(({counter}) => {
+  return { counter };
+})(Widget);

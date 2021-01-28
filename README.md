@@ -1,47 +1,14 @@
-<p align="middle" ><img src="https://static.med.gzhc365.com/fss/publicfile/b1ff93bc3691e30ffe6228fefc999a2fc956809e881095f9b370741b498138d4.jpg"/></p>
-<h2 align="middle">Hc React Image-view</h2>
+<!--
+ * @Author: your name
+ * @Date: 2021-01-20 17:27:22
+ * @LastEditTime: 2021-01-28 09:20:12
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \wpk-react\README.md
+-->
+## 🚀 内容
+引入 react-redux
+技术上讲你可以直接使用 store.subscribe() 来编写容器组件。
+但不建议这么做的原因是无法使用 React Redux 带来的性能优化。
+也因此，不要手写容器组件，而使用 React Redux 的 connect() 方法来生成，后面会详细介绍。
 
-## Installation
-
-## 🚀 How to use
-```javascript
-import React from 'react';
-import { render} from 'react-dom';
-import ImgView from '../src/Index.jsx';
-import './style.less';
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      imgList: ['./public/exmple_img/img1.jpg', './public/exmple_img/img2.jpg', './public/exmple_img/img3.jpg']
-    }
-  }
-  componentWillUnmount() {
-    ImgView.close();
-  }
-  openImgView = (index) => {
-    const { imgList = [] } = this.state;
-    console.log({data: imgList, curIndex: index});
-    ImgView.open({data: imgList, curIndex: index});
-  }
-  render() {
-    const { imgList } = this.state;
-    return (
-      <div className="img-list">
-        {
-          imgList.map((item, index) => {
-            return <img src={item} key={index} onClick={ () => { this.openImgView(index);} } />;
-          })
-        }
-      </div>
-    );
-  }
-}
-render(<App />, document.getElementById("root"));
-
-```
-	
-	
-## ⭐️ Show Your Support
-Please give a ⭐️ if this project helped you!

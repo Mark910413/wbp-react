@@ -1,34 +1,10 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { connect } from 'react-redux';
+
 import './style.less';
-import store from '@store/index.js';
-
 import {
-  addTodo,
-  toggleTodo,
-  setVisibilityFilter,
-  VisibilityFilters
+  addTodo
 } from '@store/action/index.js';
-
-console.log(store.getState());
-
-const unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
-);
-console.log(addTodo('Learn about actions'));
-store.dispatch(addTodo('Learn about actions'))
-// store.dispatch(addTodo('Learn about reducers'))
-// store.dispatch(addTodo('Learn about store'))
-// store.dispatch(toggleTodo(0))
-// store.dispatch(toggleTodo(1))
-// store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
-
-// 停止监听 state 更新
-unsubscribe();
-
-
-
-
 
 class Widget extends React.Component {
   constructor(props) {
@@ -41,13 +17,13 @@ class Widget extends React.Component {
   }
   render() {
     const {val = ''} = this.state;
-    const todo = store.getState().todo;
+    const { todo = [], dispatch } = this.props;
     console.log(todo);
     return (
       <div>
         <div>
           <input type="text" value={val} onChange={(e) => { this.setState({val: e.target.value}); }} />
-          <button onClick={() => { store.dispatch(addTodo(val)); this.setState({val: ''}) }}>add todo</button>
+          <button onClick={() => { dispatch(addTodo(val)); this.setState({val: ''}) }}>add todo</button>
         </div>
         <ul>
           {
@@ -61,4 +37,6 @@ class Widget extends React.Component {
   }
 }
 
-export default Widget;
+export default connect(({ todo }) => {
+  return {todo};
+})(Widget);
