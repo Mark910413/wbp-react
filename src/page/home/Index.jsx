@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from 'react-dom';
 import Store from '@store/index';
+import { increaseCounter, decreaseCounter } from '@store/action/index.js'
 import './style.less';
 
 class Widget extends React.Component {
@@ -14,10 +14,10 @@ class Widget extends React.Component {
   render() {
     return (
       <div className="img-list">
-        <span>{Store.getState()}</span>
+        <span>{Store.getState().counter}</span>
         <div>
-          <button onClick={() => Store.dispatch({type: 'INCREMENT'})}>INCREMENT</button>
-          <button onClick={() => Store.dispatch({type: 'DECREMENT'})}>DECREMTNT</button>
+          <button onClick={() => Store.dispatch(increaseCounter())}>INCREMENT</button>
+          <button onClick={() => Store.dispatch(decreaseCounter())}>DECREMTNT</button>
         </div>
       </div>
     );
